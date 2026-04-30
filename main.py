@@ -35,8 +35,7 @@ json={
 
 data = response.json()
 
-if "choices" in data:
-message = data["choices"][0]["message"]["content"]
+if "choices" in data:message = data["choices"][0]["message"]["content"]
 else:
 message = str(data)
 
