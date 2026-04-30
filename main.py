@@ -2,7 +2,7 @@ import requests
 
 TOKEN = "8669023960:AAEw3DZdH2RhCK3WvRg3_fdYImafG0QKrrk"
 CHAT_ID = "7008909688"
-OPENROUTER_API_KEY = "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"
+OPENROUTER_API_KEY = "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"
 
 prompt = """
 You are an Instagram AI Trend Prediction Agent.
