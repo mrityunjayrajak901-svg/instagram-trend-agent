@@ -42,6 +42,7 @@ message = data["choices"][0]["message"]["content"]
 else:
 message = str(data)
 
+
 telegram_url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
 
 requests.post(
