@@ -23,7 +23,7 @@ headers={
 "Content-Type": "application/json"
 },
 json={
-"model": "deepseek/deepseek-chat",
+"model": "openai/gpt-3.5-turbo",
 "messages": [
 {
 "role": "user",
@@ -35,7 +35,12 @@ json={
 
 data = response.json()
 
+print(data)
+
+if "choices" in data:
 message = data["choices"][0]["message"]["content"]
+else:
+message = str(data)
 
 telegram_url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
 
@@ -47,4 +52,4 @@ data={
 }
 )
 
-print("Message sent successfully")
+print("Done")
