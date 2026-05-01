@@ -34,7 +34,6 @@ timeout=30
 
 data = response.json()
 
-# SAFE handling (no crash)
 message = data.get("choices", [{}])[0].get("message", {}).get("content")
 
 if not message:
