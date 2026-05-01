@@ -35,8 +35,10 @@ json={
 
 data = response.json()
 
-if "choices" in data:message = data["choices"][0]["message"]["content"]
-else:message = str(data)
+if "choices" in data:
+   message= data["choices"][0]["message"]["content"]
+else:  
+   message= str(data)
 
 telegram_url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
 
