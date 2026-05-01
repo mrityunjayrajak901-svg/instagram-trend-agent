@@ -16,28 +16,27 @@ Include:
    """
 
 try:
-response = requests.post(
-"https://openrouter.ai/api/v1/chat/completions",
-headers={
-"Authorization": f"Bearer {OPENROUTER_API_KEY}",
-"Content-Type": "application/json"
-},
-json={
-"model": "openai/gpt-3.5-turbo",
-"messages": [{"role": "user", "content": prompt}]
-},
-timeout=20
-)
+    response = requests.post(
+        "https://openrouter.ai/api/v1/chat/completions",
+        headers={
+            "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+            "Content-Type": "application/json"
+        },
+        json={
+            "model": "openai/gpt-3.5-turbo",
+            "messages": [
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ]
+        }
+    )
 
-data = response.json()
-
-if "choices" in data:
-    message = data["choices"][0]["message"]["content"]
-else:
-    message = str(data)
+    data = response.json()
 
 except Exception as e:
-message = f"Bot Error: {str(e)}"
+    data = {"error": str(e)}
 
 telegram_url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
 
