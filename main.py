@@ -17,39 +17,30 @@ Give:
    """
 
 try:
-response = requests.post(
-"https://openrouter.ai/api/v1/chat/completions",
-headers={
-"Authorization": f"Bearer {OPENROUTER_API_KEY}",
-"Content-Type": "application/json"
-},
-json={
-"model": "openai/gpt-3.5-turbo",
-"messages": [
-{"role": "user", "content": prompt}
-]
-},
-timeout=30
-)
+    prompt = """
+    Give today's viral Instagram AI editing trend.
+    """
 
-data = response.json()
+    response = requests.post(
+        "https://openrouter.ai/api/v1/chat/completions",
+        headers={
+            "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+            "Content-Type": "application/json"
+        },
+        json={
+            "model": "openai/gpt-3.5-turbo",
+            "messages": [
+                {"role": "user", "content": prompt}
+            ]
+        }
+    )
 
-message = data.get("choices", [{}])[0].get("message", {}).get("content")
+    data = response.json()
 
-if not message:
-    message = f"API Response Error:\n{data}"
+    if "choices" in data:
+        message = data["choices"][0]["message"]["content"]
+    else:
+        message = str(data)
 
 except Exception as e:
-message = f"Bot Error:\n{str(e)}"
-
-telegram_url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
-
-requests.post(
-telegram_url,
-data={
-"chat_id": CHAT_ID,
-"text": message
-}
-)
-
-print("Done")
+    message = str(e)
