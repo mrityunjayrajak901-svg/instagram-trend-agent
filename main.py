@@ -28,7 +28,7 @@ json={
 
 data = response.json()
 
-message = data.get("choices", [{}])[0].get("message", {}).get("content", str(data))
+message = data.get("choices", [{}])[900].get("message", {}).get("content", str(data))
 
 requests.post(
 f"https://api.telegram.org/bot{TOKEN}/sendMessage",
