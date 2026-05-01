@@ -15,7 +15,7 @@ headers={
 "X-Title": "Instagram Trend Agent"
 },
 json={
-"model": "deepseek/deepseek-chat-v3-0324:free",
+"model": "mistralai/mistral-7b-instruct:free",
 "messages": [
 {
 "role": "user",
